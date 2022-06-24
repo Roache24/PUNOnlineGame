@@ -936,7 +936,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1424869511}
         m_TargetAssemblyTypeName: Com.SteveGames.PUNonline.PlayerInputName, Assembly-CSharp
         m_MethodName: SetPlayerName
-        m_Mode: 5
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

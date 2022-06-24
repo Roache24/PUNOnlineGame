@@ -13,6 +13,9 @@ namespace Com.SteveGames.PUNonline
         public float Health = 1f;
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
+        [Tooltip("The Player's UI GameObject Prefab")]
+        [SerializeField]
+        public GameObject playerUIPrefab;
         #endregion
         #region PrivateFields
         [Tooltip("The Beams GameObject to Control")]
@@ -53,6 +56,15 @@ namespace Com.SteveGames.PUNonline
             else
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
+            }
+            if(playerUIPrefab!)
+            {
+                GameObject _uiGo = Instantiate(playerUIPrefab);
+                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
             }
         }
 
@@ -119,6 +131,13 @@ namespace Com.SteveGames.PUNonline
                 }    
             }
         }
+
+        void CalledOnLevelWasLoaded()
+        {
+            GameObject _uiGo = Instantiate(this.playerUIPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        }
+        
         #endregion
         #region IPunObservableImplementation
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) 
@@ -137,3 +156,4 @@ namespace Com.SteveGames.PUNonline
         #endregion
     }
 }
+
