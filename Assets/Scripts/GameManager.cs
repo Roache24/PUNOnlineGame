@@ -26,11 +26,11 @@ namespace Com.SteveGames.PUNonline
         {
             Instance = this;
 
-            if (playerPrefab == null) 
+            if (playerPrefab == null)
             {
                 Debug.LogError("< Color = Red >< a > Missing </ a ></ Color > playerPrefab Reference.Please set it up in GameObject 'Game Manager'", this);
             }
-            if(PlayerManager.LocalPlayerInstance == null)
+            if (PlayerManager.LocalPlayerInstance == null)
             {
                 Debug.Log("We are Instantiating LocalPlayer from {0}");
                 PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
@@ -39,20 +39,27 @@ namespace Com.SteveGames.PUNonline
             {
                 Debug.Log("Ignoring scene load for {0}");
             }
+
         }
+
+      
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
         }
+
         #endregion
         #region Private Methods
-        private void LoadArena()
+        public void LoadArena()
         {
             if (!PhotonNetwork.IsMasterClient)
             {
                 Debug.LogError("Photon Network: Trying to load the level but client isn't the Master Client");
             }
-            PhotonNetwork.LoadLevel("GameLevel");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("GameLevel");
+            }
         }
         #endregion
     }

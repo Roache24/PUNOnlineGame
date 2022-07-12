@@ -12,6 +12,9 @@ namespace Com.SteveGames.PUNonline
         [SerializeField]
         private Text playerNameText;
 
+        [Tooltip("Text to display player Deaths")]
+        public Text deathText;
+
         [Tooltip("Slider to display player health")]
         [SerializeField]
         private Slider HealthSlider;
@@ -46,6 +49,11 @@ namespace Com.SteveGames.PUNonline
                 playerNameText.text = target.photonView.Owner.NickName;
             }
 
+            if(deathText != null)
+            {
+                deathText.text = target.deathCount.ToString();
+            }
+
             targetTransform = this.target.GetComponent<Transform>();
             targetRenderer = this.target.GetComponent<Renderer>();
             CharacterController characterController = _target.GetComponent<CharacterController>();
@@ -73,6 +81,14 @@ namespace Com.SteveGames.PUNonline
             {
                 Destroy(this.gameObject);
                 return;
+            }
+
+            deathText.text = target.deathCount.ToString();
+            
+            if(target.deathCount == -1)
+            {
+                playerNameText.text = ("Dead");
+                deathText.text = ("0");
             }
         }
 
