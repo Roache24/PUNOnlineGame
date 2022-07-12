@@ -11,7 +11,7 @@ namespace Com.SteveGanes.PUNonline
         #region Private Fields
 
         [SerializeField]
-        private float directionDampTime = .25f;
+        private float directionDampTime = .05f;
         private Animator animator;
 
         #endregion

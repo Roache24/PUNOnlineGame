@@ -24,6 +24,7 @@ namespace Com.SteveGames.PUNonline
         public float deathCount = 1f;
         public float maxDeathCount = 3f;
         public bool gameStarted = false;
+        public AudioSource laser;
         #endregion
         #region PrivateFields
         [Tooltip("The Beams GameObject to Control")]
@@ -178,6 +179,7 @@ namespace Com.SteveGames.PUNonline
                 if (!IsFiring)
                 {
                     IsFiring = true;
+                    laser.Play();
                 }
             }
 
@@ -186,9 +188,15 @@ namespace Com.SteveGames.PUNonline
                 if(IsFiring)
                 {
                     IsFiring = false;
+                    laser.Stop();
                 }    
             }
 
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PlayerCounter.Instance.UpdatePlayerCount();
+                GameManager.Instance.LeaveRoom();
+            }
 
         }
 

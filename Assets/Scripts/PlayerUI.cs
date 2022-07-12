@@ -10,7 +10,7 @@ namespace Com.SteveGames.PUNonline
         #region PublicFields
         [Tooltip("Text to display player name")]
         [SerializeField]
-        private Text playerNameText;
+        public Text playerNameText;
 
         [Tooltip("Text to display player Deaths")]
         public Text deathText;

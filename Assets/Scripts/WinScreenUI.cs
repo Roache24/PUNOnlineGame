@@ -11,7 +11,7 @@ namespace Com.SteveGames.PUNonline
         CanvasGroup _canvasGroup;
         public GameObject winnerUI;
         public float playerCount;
-
+        public AudioSource click;
 
 
         public void Awake()
@@ -35,6 +35,11 @@ namespace Com.SteveGames.PUNonline
             }
         }
 
+        public void PlayClick()
+        {
+            click.Play();
+            Invoke("ReturnToMain", 0.8f);
+        }
 
         public void ReturnToMain()
         {
